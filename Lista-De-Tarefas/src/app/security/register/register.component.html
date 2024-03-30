@@ -1,0 +1,32 @@
+<div class="container d-flex justify-content-center">
+
+    <div class="col-4">
+        <div class="card shadow round mt-5">
+            <div class="card-header" *ngIf="formularioRegistro">
+                <h3 class="text-center">{{tituloFormulario}}</h3>
+            </div>
+
+            <div class="card-body">
+                <form [formGroup]="formularioRegistro" (ngSubmit)="EnviarFormulario()">
+                    <div class="form-group mb-3">
+                        <label class="form-label">E-mail</label>
+                        <input type="text" class="form-control form-control-sn" formControlName="email" required>
+                        
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Nome de Usuário</label>
+                        <input type="text" class="form-control form-control-sn" formControlName="username" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Senha</label>
+                        <input type="password" class="form-control form-control-sn" formControlName="senha" required>
+                        
+                    </div>
+                    <button type="submit" class="btn  btn-sm btn-outline-secondary " [disabled]="formularioRegistro.invalid">
+                        Criar conta
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

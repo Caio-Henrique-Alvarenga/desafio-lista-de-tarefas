@@ -1,0 +1,211 @@
+<!--Barra de Navegação-->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand">Lista de Tarefas</a>
+        <span class="navbar-text">
+            Bem-vindo {{username}}!
+        </span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <button type="button" class="btn btn-sm btn-outline-secondary"  (click)="logout()">Sair</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    
+    <!--Container principal-->
+<div class="container">
+    <div class="mt-3 mb-3 p-3 card shadow">
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newTaskModal" (click)="novaTarefa()">
+                + Nova Tarefa
+            </button>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{filtroAtual}}
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" (click)="FiltrarTasks('Todas')">Todas</a></li>
+                    <li><a class="dropdown-item" (click)="FiltrarTasks('Completas')">Completas</a></li>
+                    <li><a class="dropdown-item" (click)="FiltrarTasks('Incompletas')">Incompletas</a></li>
+                </ul>
+            </div>
+            <hr/>
+        </div>
+        <div class="container">
+            <div class="border border-light rounded p-3">
+                <table class="table table-striped table-hover table-sm" *ngIf="currentUserTasks">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Título</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--Preenchendo tabela de tarefas com os dados de cada uma-->
+                        <tr *ngFor="let task of currentUserTasks">
+                            <ng-container *ngIf="task.isComplete == filtroStatus || !filtroLigado">
+                                <td class="p-2 col-8">{{task.title}}</td>
+                                <td class="p-2 col-2">
+                                    <a (click)="mudarStatus(task)" class="clicavel">
+                                        <span class="badge rounded-pill" [ngClass]="task.isComplete ? 'bg-success' : 'bg-danger'">{{ getTaskStatusText(task) }}</span>
+                                    </a>
+                                </td>
+                                <td class="p-2 col-2">
+                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#viewTaskModal" (click)="setTaskToUpdate(task)">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                    <button type="button" class="btn greenButton" data-bs-toggle="modal" data-bs-target="#updateTaskModal" (click)="setTaskToUpdate(task)">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                    <button type="button" class="btn redButton" data-bs-toggle="modal" data-bs-target="#deleteTaskModal" (click)="setDeleteId(task.taskId)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </ng-container>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<!-- Modal para formulario de nova tarefa -->
+<div class="modal fade" id="newTaskModal" tabindex="-1" aria-labelledby="newTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="newTaskModalLabel">+ Nova Tarefa</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formularioTarefa" (ngSubmit)="EnviarFormulario()">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Título</label>
+                        <input type="text" class="form-control form-control-sn" formControlName="title" id="title" aria-describedby="titleHelp" required>
+                        <div id="titleHelp" class="form-text">Insira um título para a sua tarefa.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descrição</label>
+                        <textarea class="form-control form-control-sn" formControlName="description" id="description" rows="5" required></textarea>
+                        <div id="descriptionHelp" class="form-text">Descreva a sua tarefa em detalhes.</div>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input form-control form-control-sn" type="checkbox" value="" id="CriarTarefaCompleta" formControlName="isComplete">
+                        <label class="form-check-label" for="CriarTarefaCompleta">
+                          Tarefa Completa
+                        </label>
+                        <div id="isCompleteHelp" class="form-text">Marque se a tarefa já foi concluída</div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-success" [disabled]="formularioTarefa.invalid">Criar Tarefa</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- Modal para formulario de atualizar tarefa -->
+
+<div class="modal fade" #updateTaskModal id="updateTaskModal" tabindex="-1" aria-labelledby="updateTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="updateTaskModalLabel">Atualizar Tarefa</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formularioTarefa" (ngSubmit)="AtualizarTarefa()">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Título</label>
+                        <input type="text" class="form-control form-control-sn" formControlName="title" id="title" [value]="taskToUpdate.title"  aria-describedby="titleHelp" required>
+                        <div id="titleHelp" class="form-text">Insira um título para a sua tarefa.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descrição</label>
+                        <textarea class="form-control form-control-sn" formControlName="description" id="description" rows="5" [value]="taskToUpdate.description" required></textarea>
+                        <div id="descriptionHelp" class="form-text">Descreva a sua tarefa em detalhes.</div>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input form-control form-control-sn" type="checkbox" value="" id="AtualizarTarefaCompleta" [checked]="taskToUpdate.isComplete" formControlName="isComplete" aria-describedby="isCompleteHelp">
+                        <label class="form-check-label" for="AtualizarTarefaCompleta">
+                          Tarefa Completa
+                        </label>
+                        <div id="isCompleteHelp" class="form-text">Marque se a tarefa já foi concluída</div>
+                    </div>
+                    <div class="modal-footer">
+                        
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-success">Atualizar Tarefa</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- Modal para confirmar exclusão de tarefa -->
+
+<div class="modal fade" id="deleteTaskModal" tabindex="-1" aria-labelledby="deleteTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteTaskModalLabel">Excluir Tarefa?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="ExcluirTarefa()">
+                    
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-warning">Excluir Tarefa</button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- Modal para exibir tarefa em detalhes -->
+
+<div class="modal fade" id="viewTaskModal" tabindex="-1" aria-labelledby="viewTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="text-center">
+                    {{ taskToUpdate.title }} -
+                    <span class="badge rounded-pill" [ngClass]="taskToUpdate.isComplete ? 'bg-success' : 'bg-danger'">
+                      {{ getTaskStatusText(taskToUpdate) }}
+                    </span>
+                  </h3>
+                  
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <pre>{{taskToUpdate.description}}</pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                </div>     
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="row fixed-bottom">

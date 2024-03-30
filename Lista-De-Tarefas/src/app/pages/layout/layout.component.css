@@ -1,0 +1,9 @@
+.redButton{
+    color:red;
+}
+.greenButton{
+    color: green;   
+}
+.clicavel {
+    cursor: pointer;
+}
