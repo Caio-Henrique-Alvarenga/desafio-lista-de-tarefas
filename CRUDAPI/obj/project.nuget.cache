@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/csmOHQrSKRqdwKuK/ETh4e4//715YZExlL8jMP8ZM1tXJERg3S/y01klm0jl3CXoknfM9KRjIBiCameTjgcJg==",
+  "dgSpecHash": "04oVKLMo21srgKzK4g8D3jXsD3WVIPvfbGiA9z4YcwF/IOIlP877oC0dHuykXKGu4TY1T8d3kfP8N6taQFSJzg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Caior\\OneDrive\\Área de Trabalho\\College\\Desafio Keevo\\CRUDAPI\\CRUDAPI.csproj",
+  "projectFilePath": "C:\\Users\\Caior\\OneDrive\\Área de Trabalho\\Desafio Keevo\\CRUDAPI\\CRUDAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Caior\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Caior\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.3\\microsoft.aspnetcore.cryptography.internal.8.0.3.nupkg.sha512",

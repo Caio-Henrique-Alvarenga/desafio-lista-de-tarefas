@@ -3112,11 +3112,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Caior\\OneDrive\\Área de Trabalho\\College\\Desafio Keevo\\CRUDAPI\\CRUDAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Caior\\OneDrive\\Área de Trabalho\\Desafio Keevo\\CRUDAPI\\CRUDAPI.csproj",
       "projectName": "CRUDAPI",
-      "projectPath": "C:\\Users\\Caior\\OneDrive\\Área de Trabalho\\College\\Desafio Keevo\\CRUDAPI\\CRUDAPI.csproj",
+      "projectPath": "C:\\Users\\Caior\\OneDrive\\Área de Trabalho\\Desafio Keevo\\CRUDAPI\\CRUDAPI.csproj",
       "packagesPath": "C:\\Users\\Caior\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Caior\\OneDrive\\Área de Trabalho\\College\\Desafio Keevo\\CRUDAPI\\obj\\",
+      "outputPath": "C:\\Users\\Caior\\OneDrive\\Área de Trabalho\\Desafio Keevo\\CRUDAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Caior\\AppData\\Roaming\\NuGet\\NuGet.Config"

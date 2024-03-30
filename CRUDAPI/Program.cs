@@ -4,6 +4,8 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+string credenciais = "Host=localhost;Port=5432;Pooling=true;Database=DesafioKeevo;User Id=postgres;Password=projeto1;";
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -13,7 +15,7 @@ builder.Services.AddSwaggerGen( c =>{
     c.SwaggerDoc("v1", new OpenApiInfo {Title = "Deseafio Keevo - Lista de Tarefas", Version = "v1"});
 });
 
-builder.Services.AddEntityFrameworkNpgsql().AddDbContext<Contexto>(opcoes => opcoes.UseNpgsql("Host=localhost;Port=5432;Pooling=true;Database=DesafioKeevo;User Id=postgres;Password=projeto1;"));
+builder.Services.AddEntityFrameworkNpgsql().AddDbContext<Contexto>(opcoes => opcoes.UseNpgsql(credenciais));
 builder.Services.AddCors ();
 
 var app = builder.Build();
