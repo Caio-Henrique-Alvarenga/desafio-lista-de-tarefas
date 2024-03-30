@@ -51,6 +51,6 @@ Seguem algumas instruções para auxiliar a executar tanto o frontend quanto o b
 ### Executando o frontend
 - Certifique-se de ter o Angular 17 ou superior instalado em seu sistema. Você pode encontrar as instruções para instalar o Angular em: https://angular.io/guide/setup-local
 - Note que para utilizar o Angular é preciso já ter o nodeJS e o npm packet manager instalados em sua máquina
-- Para executar o frontend, abra um terminal (diferente do que está rodando o backend) e navegue até o diretório `Lista-de-Tarefas` e execute o comando `ng serve`
+- Para executar o frontend, abra um terminal (diferente do que está rodando o backend) e navegue até o diretório `Lista-De-Tarefas` e execute o comando `ng serve`
 - Após isso você poderá utilizar a aplicação acessando `http://localhost:4200` em seu navegador ou acessando o link que aparecerá em seu terminal após a execução bem-sucedida do comando `ng serve`
 - Lembrando novamente que é de suma importância que o frontend e o backend estejam rodando ao mesmo tempo em terminais separados
