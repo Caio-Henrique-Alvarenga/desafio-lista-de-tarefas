@@ -54,3 +54,12 @@ Seguem algumas instruções para auxiliar a executar tanto o frontend quanto o b
 - Para executar o frontend, abra um terminal (diferente do que está rodando o backend) e navegue até o diretório `Lista-De-Tarefas` e execute os comandos `npm install Angular` e `ng serve`.
 - Após isso você poderá utilizar a aplicação acessando `http://localhost:4200` em seu navegador ou acessando o link que aparecerá em seu terminal após a execução bem-sucedida do comando `ng serve`.
 - Lembrando novamente que é de suma importância que o frontend e o backend estejam rodando ao mesmo tempo em terminais separados.
+## Propostas de melhoria
+Seguem algumas propostas de funcinalidades extras e mudanças para melhorar a aplicação.
+### Design do frontend
+Todo o projeto foi feito usando as ferramentas mais basicas de HTML e Bootstrap. Explorar uma variedade maior de ferramentas pode proporcionar uma grande melhoria no design da aplicação, tornando seu visual menos genérico.
+### Tarefas mais customizaveis
+Ao criar mais atributos para as tarefas, as possíveis utilidades da aplicação se expandem. Um exemplo seria a possibilidade de separar tarefas em diferentes categorias, como tarefas diárias ou unitárias, tarefas de casa ou tarefas de trabalho, ou até mesmo a possibilidade de criar tarefas com data limite para serem concluídas.
+### Sistema de notificação por e-mail
+Seguindo com a ideia criar tarefas com data limite para a conclusão, também seria interessante criar um sistema para notificar os usuários caso a data limite para a conclusão de uma tarefa esteja se aproximando ou outros tipos de notificação de lembrete de tarefas, como lembretes de tarefas diárias.
+
