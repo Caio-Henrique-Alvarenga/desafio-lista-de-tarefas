@@ -54,6 +54,17 @@ Seguem algumas instruções para auxiliar a executar tanto o frontend quanto o b
 - Para executar o frontend, abra um terminal (diferente do que está rodando o backend) e navegue até o diretório `Lista-De-Tarefas` e execute os comandos `npm install Angular` e `ng serve`.
 - Após isso você poderá utilizar a aplicação acessando `http://localhost:4200` em seu navegador ou acessando o link que aparecerá em seu terminal após a execução bem-sucedida do comando `ng serve`.
 - Lembrando novamente que é de suma importância que o frontend e o backend estejam rodando ao mesmo tempo em terminais separados.
+## Pequeno preview das telas principais
+### Registro
+![Exemplo de imagem](Imagens-Tutorial/Registro.png) 
+### Login
+![Exemplo de imagem](Imagens-Tutorial/Login.png) 
+### Lista de tarefas
+![Exemplo de imagem](Imagens-Tutorial/Lista.png) 
+### Tarefa expandida
+![Exemplo de imagem](Imagens-Tutorial/Expandir.png)
+### Editando uma tarefa
+![Exemplo de imagem](Imagens-Tutorial/Editar.png) 
 ## Propostas de melhoria
 Seguem algumas propostas de funcinalidades extras e mudanças para melhorar a aplicação.
 ### Design do frontend
